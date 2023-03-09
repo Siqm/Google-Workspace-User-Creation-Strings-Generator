@@ -1,5 +1,6 @@
 const fs = require('fs')
 
+
 function emailCreator() {
 
     const domain = "@degrausnet.com.br"
@@ -31,4 +32,4 @@ function emailCreator() {
 
 }
 
-emailCreator()
+export { emailCreator }

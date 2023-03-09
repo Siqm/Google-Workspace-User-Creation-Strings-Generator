@@ -1,39 +1,11 @@
-// const fs = require('fs')
-
-// async function StringCreator() {
-//     const teste = fs.readFile('./src/content/names.txt', 'utf-8', (err, data) => {
-//         if(err) {
-//             console.log('Error to load student names')
-//             return;
-//         }
-
-
-//         var names = data.split('\n')
-//         names = names.map(name => name.charAt(0).toUpperCase() + name.slice(1))
-
-//         const userString = names.map(name => {
-//             const nameParts = name.split(' ')
-//             const firstName = nameParts[0]
-//             const familyName = nameParts.slice(1).join(' ')
-
-//             const user = `${firstName},${familyName}`
-
-//             return user
-//         })
-
-//     })
-
-
-
-// }
-
-// StringCreator()
-
 const fs = require('fs')
 
 async function StringCreator() {
+
     const namesPromise = new Promise((resolve, reject) => {
+
         fs.readFile('./src/content/names.txt', 'utf-8', (err, data) => {
+            
             if (err) {
                 console.log('Error to load student names')
                 reject(err);
@@ -82,4 +54,4 @@ async function StringCreator() {
     fs.writeFile('./src/content/result.txt', fullStrings.join('\n'), err => {console.log(err)})
 }
 
-StringCreator();
+export { StringCreator }

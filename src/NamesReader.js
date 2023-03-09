@@ -2,9 +2,9 @@ const fs = require('fs')
 const accents = require('remove-accents')
 
 
-function FormatNames() {
+function FormatNames(inputFileName) {
 
-    fs.readFile('./src/content/names.txt', 'utf-8', (err, data) => {
+    fs.readFile(`./src/content/${inputFileName}`, 'utf-8', (err, data) => {
         if (err) {
             console.log(err);
             return
@@ -32,4 +32,4 @@ function FormatNames() {
 
 }
 
-FormatNames()
+export { FormatNames }
