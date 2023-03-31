@@ -22,7 +22,7 @@ function formatNames(inputFileName) {
 
       const emptyIndex = names.indexOf('');
       if (emptyIndex !== -1) {
-        console.error(`Error in line ${emptyIndex}`);
+        console.error(`Error in line ${emptyIndex+1}`);
         return;
       }
 

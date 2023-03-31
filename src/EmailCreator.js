@@ -1,35 +1,31 @@
 const fs = require('fs')
 
 
-function emailCreator() {
+function emailCreator(domain, data, createFile) {
 
-    const domain = "@degrausnet.com.br"
+    console.log(typeof data)
 
-    fs.readFile("./src/content/names.txt", 'utf-8', (err, data) => {
-        if(err) {
-            console.log(err)
-            return
-        }
+    const emails = data.split('\n').map(name => {
 
+        const splittedNames = name.split(' ').map(name => name.trim().toLowerCase())
+        const nameSize = splittedNames.length
+        const email = splittedNames[0] + '.' + splittedNames[nameSize-1] + domain
+        return email
+    })
 
-        const emails = data.split('\n').map(name => {
+    const joinedEmails = emails.join('\n')
 
-            const names = name.split(' ').map(name => name.trim().toLowerCase())
-            const nameSize = names.length
-            const email = names[0] + '.' + names[nameSize-1] + domain
-            return email
-        })
-
-        fs.writeFile('./src/content/emails.txt', emails.join('\n'), err => {
+    if(createFile) {
+        fs.writeFile('./content/emails.txt', joinedEmails, err => {
             if (err) {
                 console.error(err)
                 return
             }
             console.log(`Arquivo salvo com sucesso.`)
         })
+    }
 
-    })
-
+    return joinedEmails;
 }
 
-export { emailCreator }
+module.exports =  emailCreator;

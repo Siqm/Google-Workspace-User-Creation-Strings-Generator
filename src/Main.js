@@ -1,3 +1,4 @@
+const emailCreator = require('./EmailCreator');
 const formatNames = require('./NamesReader')
 
 async function main() {
@@ -10,6 +11,11 @@ async function main() {
       console.log(err)
     });
 
-    console.log(names)
+    console.log("names", names)
+
+
+    const emails = emailCreator("@generico.com.br", names, true)
+
+    console.log(emails)
 }
 main()
