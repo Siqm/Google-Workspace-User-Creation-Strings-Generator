@@ -1,57 +1,41 @@
 const fs = require('fs')
 
-async function StringCreator() {
-
-    const namesPromise = new Promise((resolve, reject) => {
-
-        fs.readFile('./src/content/names.txt', 'utf-8', (err, data) => {
-            
-            if (err) {
-                console.log('Error to load student names')
-                reject(err);
-            }
-
-            var names = data.split('\n')
-            names = names.map(name => name.charAt(0).toUpperCase() + name.slice(1))
-
-            const userString = names.map(name => {
-                const nameParts = name.split(' ')
-                const firstName = nameParts[0]
-                const familyName = nameParts.slice(1).join(' ')
-
-                const user = `${firstName},${familyName},`
-
-                return user
-            })
-
-            resolve(userString);
-        });
-    });
-
-    const resultado = await namesPromise;
-
-    const emailsPromise = new Promise((resolve, reject) => {
-        fs.readFile('./src/content/emails.txt', 'utf-8', (err, data) => {
-            if (err) {
-                reject(err)
-            }
-
-            resolve(data)
-        })
-    })
-
-    const emails = await emailsPromise
-    const emailsArray = emails.split('\n')
-    let i;
-    let fullStrings = new Array;
-
-    for(i = 0; i < emailsArray.length; i++) {
-        console.log(resultado[i]+emailsArray[i])
-        fullStrings[i] = resultado[i]+emailsArray[i]+",senhaNova,,/Alunos,,,,,,,,,,,,,,,,,,,,true,,"
-    }
-    
-
-    fs.writeFile('./src/content/result.txt', fullStrings.join('\n'), err => {console.log(err)})
+function generatePassword() {
+    return Math.random().toString(36).slice(-10);
 }
 
-export { StringCreator }
+async function StringCreator(names, emails) {
+
+    var namesArray = names.split('\n')
+    const emailsArray = emails.split('\n')
+
+    namesArray = namesArray.map(name => name.charAt(0).toUpperCase() + name.slice(1))
+
+    const namesCreationString = namesArray.map(name => {
+        const nameParts = name.split(' ')
+        const firstName = nameParts[0]
+        const familyName = nameParts.slice(1).join(' ')
+
+        const firstnameAndLastname = `${firstName},${familyName},`
+
+        return firstnameAndLastname
+    })
+
+    let creationStrings = new Array;
+
+    for (var i = 0; i < emailsArray.length; i++) {
+        creationStrings[i] = namesCreationString[i] + emailsArray[i] + `,${generatePassword()},,/Alunos,,,,,,,,,,,,,,,,,,,,true,,`
+    }
+
+    fs.writeFile(
+        './content/result.txt',
+        creationStrings.join('\n'),
+        err => {
+            if (err) {
+                console.log(err)
+            }
+        }
+    )
+}
+
+module.exports = StringCreator;

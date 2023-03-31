@@ -3,8 +3,6 @@ const fs = require('fs')
 
 function emailCreator(domain, data, createFile) {
 
-    console.log(typeof data)
-
     const emails = data.split('\n').map(name => {
 
         const splittedNames = name.split(' ').map(name => name.trim().toLowerCase())
