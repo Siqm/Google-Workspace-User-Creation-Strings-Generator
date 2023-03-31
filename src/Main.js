@@ -1,6 +1,15 @@
-const formatNames = require('NamesReader')
+const formatNames = require('./NamesReader')
 
-function main() {
-    const teste = formatNames("names.txt")
+async function main() {
+
+    const names = await formatNames("./content/names.txt")
+    .then((formattedNames) => {
+      return formattedNames
+    })
+    .catch((err) => {
+      console.log(err)
+    });
+
+    console.log(names)
 }
 main()
