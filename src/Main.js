@@ -7,7 +7,7 @@ const StringCreator = require('./StringCreator');
 // Call the Main function at the end of this file, as shown, following these rules for the parameters.
 
 // Rules: 
-// "First of all, you will need a .txt file with all the names of the people that you want to create emails for. 
+// First of all, you will need a .txt file with all the names of the people that you want to create emails for. 
 // (You can check the example inside ./content/names.txt)
 // The file should follow the pattern of having one full name per line. 
 // Pass the file path as the first parameter of the Main function below.

@@ -2,3 +2,5 @@ Barney,Rodrigues Antonio,barney.antonio@generico.com.br,k076mni0oe,,/Alunos,,,,,
 Vladimir,Xambra Viscozo,vladimir.viscozo@generico.com.br,kukeevrvys,,/Alunos,,,,,,,,,,,,,,,,,,,,true,,
 Josney,Koimbra Alves,josney.alves@generico.com.br,oe9qok0z4y,,/Alunos,,,,,,,,,,,,,,,,,,,,true,,
 Cleyde,Michelli Silva Sauro,cleyde.sauro@generico.com.br,jesto6mcuk,,/Alunos,,,,,,,,,,,,,,,,,,,,true,,
+
+FirstName,LastName,EmailAddress,Password,,Group,...
